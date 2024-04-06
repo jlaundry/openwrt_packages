@@ -6,11 +6,11 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=numpy
-PKG_VERSION:=1.25.2
+PKG_VERSION:=1.26.3
 PKG_RELEASE:=1
 
 PYPI_NAME:=$(PKG_NAME)
-PKG_HASH:=fd608e19c8d7c55021dffd43bfe5492fab8cc105cc8986f813f8c3c048b38760
+PKG_HASH:=697df43e2b6310ecc9d95f05d5ef20eacc09c7c4ecc9da3f235d39e71b7da1e4
 
 PKG_MAINTAINER:=Alexandru Ardelean <ardeleanalex@gmail.com>
 
@@ -21,7 +21,7 @@ PKG_CPE_ID:=cpe:/a:numpy:numpy
 PKG_CONFIG_DEPENDS:= \
         CONFIG_NUMPY_OPENBLAS_SUPPORT
 
-PKG_BUILD_DEPENDS:=python-cython/host
+PKG_BUILD_DEPENDS:=python-cython/host pyproject-metadata/host
 
 # Ensure numpy does not find openblas if openblas support is not enabled
 PYTHON3_PKG_BUILD_VARS:= \

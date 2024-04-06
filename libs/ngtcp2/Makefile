@@ -1,12 +1,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ngtcp2
-PKG_VERSION:=1.0.1
-PKG_RELEASE:=1
+PKG_VERSION:=1.4.0
+PKG_RELEASE:=r1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://github.com/ngtcp2/ngtcp2/releases/download/v$(PKG_VERSION)/
-PKG_HASH:=df03e7e91110fcbb165ae048fa671f1dd39f77b841df3a14aef076a1c192cc27
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
+PKG_SOURCE_URL:=https://github.com/ngtcp2/$(PKG_NAME)/releases/download/v$(PKG_VERSION)/
+PKG_HASH:=b5d1433b9f5c06ce249e1e390e97dcfa49bf7ada5cb7c8bed8e6cd4feaf1ca4a
 
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=COPYING
@@ -22,11 +22,12 @@ define Package/libngtcp2
   CATEGORY:=Libraries
   TITLE:=Implementation of QUIC protocol
   URL:=https://nghttp2.org/ngtcp2
-  DEPENDS:=+libnghttp3 +libopenssl
+  DEPENDS:=+libnghttp3
 endef
 
 define Package/libngtcp2/description
- ngtcp2 project is an effort to implement QUIC protocol which is now being discussed in IETF QUICWG for its standardization.
+ngtcp2 project is an effort to implement QUIC protocol which is now being
+discussed in IETF QUICWG for its standardization.
 endef
 
 CMAKE_OPTIONS += -DENABLE_LIB_ONLY=ON

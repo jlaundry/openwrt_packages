@@ -1,12 +1,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=lua-eco
-PKG_VERSION:=3.1.0
+PKG_VERSION:=3.3.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL=https://github.com/zhaojh329/lua-eco/releases/download/v$(PKG_VERSION)
-PKG_HASH:=bb48af3f65a2c5d69b06b32ec2734bcb77cc6315b208be4fe3b0ae5fc0a82a33
+PKG_HASH:=597c3edbb20c35f638b26b4fa7a02638c48f96f0330758a7ac1c44079b2170a3
 
 PKG_MAINTAINER:=Jianhui Zhao <zhaojh329@gmail.com>
 PKG_LICENSE:=MIT
@@ -94,11 +94,14 @@ ifneq ($(CONFIG_PACKAGE_lua-eco-ssl),)
 endif
 
 define Package/lua-eco/install
-	$(INSTALL_DIR) $(1)/usr/bin $(1)/usr/local/lib/lua/5.3/eco/core $(1)/usr/local/lib/lua/5.3/eco/encoding
+	$(INSTALL_DIR) $(1)/usr/bin $(1)/usr/local/lib/lua/5.3/eco/core \
+		$(1)/usr/lib $(1)/usr/local/lib/lua/5.3/eco/encoding
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/eco $(1)/usr/bin
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/libeco.so $(1)/usr/lib
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/bufio.so $(1)/usr/local/lib/lua/5.3/eco
 	$(INSTALL_DATA) $(PKG_BUILD_DIR)/hex.lua $(1)/usr/local/lib/lua/5.3/eco/encoding
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/{time,bufio,sys,file}.so $(1)/usr/local/lib/lua/5.3/eco/core
-	$(INSTALL_DATA) $(PKG_BUILD_DIR)/{time,bufio,sys,file,sync}.lua $(1)/usr/local/lib/lua/5.3/eco
+	$(INSTALL_DATA) $(PKG_BUILD_DIR)/{time,sys,file,sync}.lua $(1)/usr/local/lib/lua/5.3/eco
 endef
 
 define Package/lua-eco-log/install
